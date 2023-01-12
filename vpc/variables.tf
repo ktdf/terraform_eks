@@ -19,7 +19,7 @@ variable "private_subnets" {
 variable "public_subnets" {
   description = "A list of public subnets to be included in VPC"
   type        = list(string)
-  default     = ["172.16.0.0/24", "172.16.1.0/24"]
+  default     = []
 }
 
 variable "availability_zones" {
