@@ -14,7 +14,7 @@ resource "aws_subnet" "private" {
   tags = merge(
     var.private_subnet_tags,
     {
-      "Name" = format("Private-%s", count.index+1)
+      "Name" = format("Private-%s", count.index + 1)
     }
   )
 }
@@ -28,14 +28,12 @@ resource "aws_subnet" "public" {
   tags = merge(
     var.public_subnet_tags,
     {
-      "Name" = format("Public-%s", count.index+1)
+      "Name" = format("Public-%s", count.index + 1)
     }
   )
 }
 
 resource "aws_internet_gateway" "this" {
-  count = length(var.public_subnets) > 0 ? 1: 0
+  count  = length(var.public_subnets) > 0 ? 1 : 0
   vpc_id = aws_vpc.this.id
-
 }
-
