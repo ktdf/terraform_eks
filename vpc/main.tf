@@ -14,7 +14,7 @@ resource "aws_subnet" "private" {
   tags = merge(
     var.private_subnet_tags,
     {
-      "Name" = concat("Private-", aws_subnet.private[count.index].availability_zone)
+      "Name" = format("Private-%s", count.index+1)
     }
   )
 }
@@ -28,7 +28,7 @@ resource "aws_subnet" "public" {
   tags = merge(
     var.public_subnet_tags,
     {
-      "Name" = concat("Private-", aws_subnet.public[count.index].availability_zone)
+      "Name" = format("Public-%s", count.index+1)
     }
   )
 }
