@@ -1,17 +1,11 @@
-terraform {
-  backend "s3" {
-    bucket = "terraform-state-storage-011223"
-    key = "vpc/terraform.tfstate"
-    region = "us-east-1"
+resource "aws_vpc" "this" {
+  cidr_block = var.cidr
+  tags = {
+    "Name" = var.vpc_name
   }
 }
 
-provider "aws" {
-  region = "us-east-1"
-  default_tags {
-    tags = {
-      "owner" = "Lev Valuev"
-      "provider" = "terraform"
-    }
-  }
+resource "aws_subnet" "private" {
+  count = length(var.private_subnets)
+  vpc_id = aws_vpc.this.id
 }
