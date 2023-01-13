@@ -56,15 +56,15 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_eip" "this" {
-  count = min(length(var.public_subnets), length(var.private_subnets))
+  count      = min(length(var.public_subnets), length(var.private_subnets))
   depends_on = [aws_internet_gateway.this]
 }
 
 resource "aws_nat_gateway" "this" {
-  count     = min(length(var.public_subnets), length(var.private_subnets))
+  count = min(length(var.public_subnets), length(var.private_subnets))
 
-  subnet_id = element(aws_subnet.public, count.index).id
-  allocation_id = element(aws_eip.this, count.index ).id
+  subnet_id     = element(aws_subnet.public, count.index).id
+  allocation_id = element(aws_eip.this, count.index).id
 
   depends_on = [aws_internet_gateway.this[0]]
 }

@@ -12,7 +12,7 @@ resource "aws_kms_key" "this" {
   description             = "Key for state storage bucket encryption"
   deletion_window_in_days = "7"
   tags = {
-    "name" = "terraform state key"
+    "Name" = "terraform state key"
   }
 }
 
