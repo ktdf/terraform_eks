@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "terraform-state-storage-011323"
+    bucket = "terraform-state-storage-011523"
     key    = "terraform.tfstate"
     region = "us-east-1"
   }
@@ -31,4 +31,9 @@ module "eks" {
   source = "./eks"
 
   cluster_subnets = module.vpc.private_subnets
+  node_group_size = {
+    "desired" = 1,
+    "min"     = 1
+    "max"     = 3
+  }
 }
