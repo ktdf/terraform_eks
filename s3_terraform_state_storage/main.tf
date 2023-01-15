@@ -17,7 +17,7 @@ resource "aws_kms_key" "this" {
 }
 
 resource "aws_s3_bucket" "state_storage" {
-  bucket = "terraform-state-storage-011223"
+  bucket = var.s3_bucket_name
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
